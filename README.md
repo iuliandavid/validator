@@ -1,0 +1,1 @@
+http://hotcocoatouch.com/2016/11/16/composite-validators/
