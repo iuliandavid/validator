@@ -1,0 +1,5 @@
+app:
+ image: swift
+ volumes:
+  - .:/root/validator
+ command: bash -c "cd /root/validator && swift package clean && swift build && ./.build/debug/validators"
