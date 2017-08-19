@@ -9,7 +9,7 @@ struct EmptyStringValidator : Validator {
     
     func validate(_ value: String) -> ValidatorResult {
         if value.isEmpty {
-            return .invalid(error: invalidError)
+            return .invalid(errors: [invalidError])
         } else {
             return .valid
         }

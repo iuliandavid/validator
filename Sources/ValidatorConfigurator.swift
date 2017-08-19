@@ -14,12 +14,11 @@ struct ValidatorConfigurator {
     static let sharedInstance = ValidatorConfigurator()
     
     func emailValidator() -> Validator {
-        return CompositeValidator(validators: emptyEmailStringValidator(), EmailFormatValidator())
+        return AndCompositeValidator(validators: emptyEmailStringValidator(), EmailFormatValidator())
     }
     
     func passwordValidator() -> Validator {
-        return CompositeValidator(validators: emptyPasswordStringValidator(), PasswordLengthValidator(), PasswordLowerCaseValidator(), PasswordUpperCaseValidator(),
-        PasswordContainsNumberValidator())
+        return AndCompositeValidator(validators: emptyPasswordStringValidator(), passwordStrengthValidator())
     }
     
     /// Helper Methods
@@ -29,5 +28,12 @@ struct ValidatorConfigurator {
     
     private func emptyPasswordStringValidator() -> Validator {
         return EmptyStringValidator(invalidError: PasswordValidatorError.empty)
+    }
+    private func passwordStrengthValidator() -> Validator {
+        return AndCompositeValidator(validators: PasswordLengthValidator(), PasswordLowerCaseValidator(), PasswordUpperCaseValidator(),
+                                     numberOrSpecialCharacterValidator())
+    }
+    private func numberOrSpecialCharacterValidator() -> Validator {
+        return OrCompositeValidator(validators: ContainsNumberValidator(),  ContainsSpecialCharacterValidator())
     }
 }

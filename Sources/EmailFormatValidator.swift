@@ -17,7 +17,7 @@ struct EmailFormatValidator: Validator {
         if emailTest!.evaluate(with: value) {
             return .valid
         } else {
-            return .invalid(error: EmailValidatorError.invalidFormat)
+            return .invalid(errors: [EmailValidatorError.invalidFormat])
         }
     }
 }

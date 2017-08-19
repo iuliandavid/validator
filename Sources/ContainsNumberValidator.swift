@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct PasswordContainsNumberValidator: Validator {
+struct ContainsNumberValidator: Validator {
     
     func validate(_ value: String) -> ValidatorResult {
         
@@ -25,7 +25,7 @@ struct PasswordContainsNumberValidator: Validator {
         if numberTest!.evaluate(with: value) {
             return .valid
         } else {
-            return .invalid(error: PasswordValidatorError.noNumber)
+            return .invalid(errors: [PasswordValidatorError.noNumber])
         }
         
     }

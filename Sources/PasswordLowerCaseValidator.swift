@@ -17,7 +17,7 @@ struct PasswordLowerCaseValidator: Validator {
     if lowerCaseLetterTest!.evaluate(with: value) {
             return .valid
         } else {
-            return .invalid(error: PasswordValidatorError.noLowerCaseLetter)
+            return .invalid(errors: [PasswordValidatorError.noLowerCaseLetter])
     }
     
     }

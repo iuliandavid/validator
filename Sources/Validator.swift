@@ -1,6 +1,6 @@
 enum ValidatorResult {
     case valid
-    case invalid(error: Error)
+    case invalid(errors: [Error])
 }
 
 /// Each validator is going to respond with whether the input it was given was valid or not. 
